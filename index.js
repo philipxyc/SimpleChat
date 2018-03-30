@@ -9,7 +9,7 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
-app.set('port', process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);
 
 io.on('connection', function(socket){
   console.log('a user connected');
@@ -28,8 +28,4 @@ io.on('connection', function(socket){
     console.log('message: ' + msg);
     io.emit('chat message', msg);
   });
-});
-
-http.listen(80, function(){
-  console.log('listening on *:80');
 });
