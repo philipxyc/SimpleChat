@@ -9,8 +9,6 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
-app.listen(process.env.PORT || 3000);
-
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('disconnect', function(){
@@ -28,4 +26,10 @@ io.on('connection', function(socket){
     console.log('message: ' + msg);
     io.emit('chat message', msg);
   });
+});
+
+var port = process.env.PORT || 3000;
+
+http.listen(port, function(){
+  console.log('listening on *:',port);
 });
