@@ -9,6 +9,8 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
+app.set('port', process.env.PORT || 3000);
+
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('disconnect', function(){
