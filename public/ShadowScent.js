@@ -46,6 +46,19 @@ function onReceiveMsg(msg) {
 	$('#messages').append(t);
 	if (endSig) $("#messagesContainer").animate({"scrollTop": $('#messages').height() - $('#messagesContainer').height() + 110}, 100);
 }
+function onReceivePlayer(msg){
+	var t = '<div class="message_box">';
+	t += '<div class="username">';
+	t += '<span class="label label-success">player0</span> ';
+	t += ':&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+	t += '</div>';
+	t += '<div class="content">' + msg + '</div>';
+	t += '</div>';
+	var endSig = $('#messages').height() - $('#messagesContainer').height() + 110 < 0 || $("#messagesContainer").scrollTop() >= $('#messages').height() - 2 * $('#messagesContainer').height() + 110;
+	$('#messages').append(t);
+	if (endSig) $("#messagesContainer").animate({"scrollTop": $('#messages').height() - $('#messagesContainer').height() + 110}, 100);
+
+}
 function onchangeEdit() {
 	if ($('#nameContainer').hasClass('edit')) {
 		$('#nameContainer').removeClass('edit');
@@ -62,6 +75,7 @@ function setName(c_name) {
 }
 function init() {
 	socket.on('chat message', onReceiveMsg);
+	socket.on('player0', onReceivePlayer);
 	socket.on('Alvolus', function(msg){console.log('turn to '+msg+' plz')});
 
 	$('#sendForm').submit(function(){
