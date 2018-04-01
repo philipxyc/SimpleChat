@@ -14,21 +14,17 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
-  socket.on('Alvolus', function(msg){
-    console.log('turn to '+msg+' plz');
-    io.emit('Alvolus', msg);
-  });
   socket.on('reset', function(){
     console.log('reset');
     io.emit('reset');
   });
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
-  });
   socket.on('player0', function(msg){
     console.log('player0: ' + msg);
     io.emit('player0', msg);
+  });
+  socket.on('player1', function(msg){
+    console.log('player1: ' + msg);
+    io.emit('player1', msg);
   });
 });
 
